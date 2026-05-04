@@ -1,0 +1,41 @@
+# LocalKart Backend - Production Profile Configuration (EXAMPLE)
+# Copy to application-prod.properties and fill in your actual production values
+# Use environment variables for sensitive data in production!
+
+# ==========================================
+# Production Environment Settings
+# ==========================================
+
+# Database Configuration - Use environment variables
+# Set SPRING_DATASOURCE_URL, SPRING_DATASOURCE_USERNAME, SPRING_DATASOURCE_PASSWORD as env vars
+spring.datasource.url=${SPRING_DATASOURCE_URL:jdbc:mysql://prod-db-server:3306/localkart_db}
+spring.datasource.username=${SPRING_DATASOURCE_USERNAME}
+spring.datasource.password=${SPRING_DATASOURCE_PASSWORD}
+
+# JPA/Hibernate - Validate schema only in production
+spring.jpa.hibernate.ddl-auto=validate
+spring.jpa.show-sql=false
+spring.jpa.properties.hibernate.format_sql=false
+
+# Logging Level - Minimal in production
+logging.level.root=WARN
+logging.level.com.localkart=INFO
+logging.level.org.springframework.web=WARN
+logging.level.org.springframework.security=WARN
+
+# Performance Settings
+spring.datasource.hikari.maximum-pool-size=20
+spring.datasource.hikari.minimum-idle=10
+spring.jpa.properties.hibernate.jdbc.batch_size=50
+
+# Security - Hide error details
+server.error.include-stacktrace=never
+server.error.include-exception=false
+
+# Actuator - Limited exposure
+management.endpoints.web.exposure.include=health,info
+management.endpoint.health.show-details=when-authorized
+
+# JWT Configuration - Use environment variable
+jwt.secret=${JWT_SECRET}
+jwt.expiration=86400000

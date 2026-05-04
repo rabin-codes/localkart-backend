@@ -1,0 +1,24 @@
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    port: 3000,
+    open: true,
+    proxy: {
+      // Proxy all /api calls to Spring Boot backend
+      '/api': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+        secure: false,
+      },
+      // Proxy /uploads so backend-served product images work
+      '/uploads': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
+})

@@ -1,0 +1,29 @@
+# LocalKart Backend - Development Profile Configuration (EXAMPLE)
+# Copy to application-dev.properties and fill in your actual development values
+
+# ==========================================
+# Development Environment Settings
+# ==========================================
+
+# Database Configuration
+spring.datasource.url=jdbc:mysql://localhost:3306/localkart_db
+spring.datasource.username=YOUR_DEV_DB_USERNAME
+spring.datasource.password=YOUR_DEV_DB_PASSWORD
+
+# JPA/Hibernate - Auto-create schema for development
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+# Logging Level - Verbose for development
+logging.level.root=INFO
+logging.level.com.localkart=DEBUG
+logging.level.org.springframework.web=DEBUG
+logging.level.org.springframework.security=DEBUG
+logging.level.org.springframework.data.jpa=DEBUG
+logging.level.org.hibernate.SQL=DEBUG
+logging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE
+
+# Debug Endpoints
+management.endpoints.web.exposure.include=health,info,metrics,env,configprops
+server.error.include-stacktrace=always
